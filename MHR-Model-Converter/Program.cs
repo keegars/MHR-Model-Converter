@@ -3,8 +3,10 @@ using System.IO;
 using System.Linq;
 using static MHR_Model_Converter.Helpers.CMDHelper;
 using static MHR_Model_Converter.Helpers.FolderHelper;
+using static MHR_Model_Converter.Helpers.MDFHelper;
 using static MHR_Model_Converter.Helpers.NoesisHelper;
 using static MHR_Model_Converter.Helpers.PathHelper;
+using static MHR_Model_Converter.MDF.MDFEnums;
 
 namespace MHR_Model_Converter
 {
@@ -83,14 +85,22 @@ namespace MHR_Model_Converter
             var textures = GetFiles(conversionFolder.FullName, "*.tex.28");
             ConvertWithNoesis(textures, ".tex.28", ".tex.34", NoesisVersions.v2_9999_modified);
 
+            //-------------------------------------------------
+            //MDF2 Conversion
+            //Need to add in the detection for hand textures, as some old mods have issues and will need to copy files across...need to check when sunbreak is released that this doesn't happen anymore.
+            //-------------------------------------------------
+            var mdfFiles = GetFiles(conversionFolder.FullName, "*.mdf2.19");
+            ConvertMDFFiles(mdfFiles, MDFConversion.MergeAndAddMissingProperties);
+
             //Rename File Extensions for each: tex, mesh, mdf2, chain
             RenameFileExtensions(conversionFolder.FullName);
 
-            //-------------------------------------------------
-            //MDF2 Conversion - Soon...Need to merge in code to convert them better.
-            //Need to add in the detection for hand textures, as some old mods have issues and will need to copy files across...need to check when sunbreak is released that this doesn't happen anymore.
-            //-------------------------------------------------
+            //Remove chain files at present as they will cause .paks to crash when not converted properly...
+            //TODO - Remove once chain files have been figured out
+            var chains = GetFiles(conversionFolder.FullName, "*.chain.*");
+            chains.Select(z => new FileInfo(z)).Where(z => z.Exists).ToList().ForEach(z => z.Delete());
 
+            //Open Folder Location with file explorer
             OpenExplorerLocation(conversionFolder.FullName);
         }
     }

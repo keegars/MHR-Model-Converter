@@ -1,14 +1,14 @@
 {
-      "default_bindings": [
-         {
-            "controller_type" : "vive_controller",
-            "binding_url" : "noevr_bindings_vive_controller.json"
-         },
-         {
-            "controller_type" : "generic",
-            "binding_url" : "noevr_bindings_generic.json"
-         }
-      ], 
+  "default_bindings": [
+    {
+      "controller_type": "vive_controller",
+      "binding_url": "noevr_bindings_vive_controller.json"
+    },
+    {
+      "controller_type": "generic",
+      "binding_url": "noevr_bindings_generic.json"
+    }
+  ],
   "actions": [
     {
       "name": "/actions/noevr/in/GrabRight",
@@ -59,21 +59,21 @@
       "type": "vibration"
     }
   ],
-    "localization" : [
-        {
-            "language_tag": "en_US",
-            "/actions/noevr/in/GrabRight" : "Grab Right",
-            "/actions/noevr/in/MenuRight" : "Menu Right",
-            "/actions/noevr/in/GrabLeft" : "Grab Left",
-            "/actions/noevr/in/MenuLeft" : "Menu Left",
-            "/actions/noevr/in/GripRight" : "Grip Right",
-            "/actions/noevr/in/GripLeft" : "Grip Left",
-            "/actions/noevr/in/AnalogInputRight" : "Analog Input Right",
-            "/actions/noevr/in/AnalogInputLeft" : "Analog Input Left",
-            "/actions/noevr/in/Hand_Right" : "Right Hand Pose",
-            "/actions/noevr/in/Hand_Left" : "Left Hand Pose",
-            "/actions/noevr/out/haptic_left" : "Left Haptic Feedback",
-            "/actions/noevr/out/haptic_right" : "Right Haptic Feedback"
-        }
-    ]
+  "localization": [
+    {
+      "language_tag": "en_US",
+      "/actions/noevr/in/GrabRight": "Grab Right",
+      "/actions/noevr/in/MenuRight": "Menu Right",
+      "/actions/noevr/in/GrabLeft": "Grab Left",
+      "/actions/noevr/in/MenuLeft": "Menu Left",
+      "/actions/noevr/in/GripRight": "Grip Right",
+      "/actions/noevr/in/GripLeft": "Grip Left",
+      "/actions/noevr/in/AnalogInputRight": "Analog Input Right",
+      "/actions/noevr/in/AnalogInputLeft": "Analog Input Left",
+      "/actions/noevr/in/Hand_Right": "Right Hand Pose",
+      "/actions/noevr/in/Hand_Left": "Left Hand Pose",
+      "/actions/noevr/out/haptic_left": "Left Haptic Feedback",
+      "/actions/noevr/out/haptic_right": "Right Haptic Feedback"
+    }
+  ]
 }

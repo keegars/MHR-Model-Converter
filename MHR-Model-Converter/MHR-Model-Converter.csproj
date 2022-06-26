@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MurmurHash, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\murmurhash.1.0.3\lib\net45\MurmurHash.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -47,8 +51,16 @@
   <ItemGroup>
     <Compile Include="Helpers\CMDHelper.cs" />
     <Compile Include="Helpers\FolderHelper.cs" />
+    <Compile Include="Helpers\LibraryHelper.cs" />
+    <Compile Include="Helpers\MDFHelper.cs" />
     <Compile Include="Helpers\NoesisHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
+    <Compile Include="MDF\BooleanHolder.cs" />
+    <Compile Include="MDF\Material.cs" />
+    <Compile Include="MDF\MDFEnums.cs" />
+    <Compile Include="MDF\MDFFile.cs" />
+    <Compile Include="MDF\TextureBinding.cs" />
+    <Compile Include="MDF\VariableProperty.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -708,6 +720,7 @@
     <Content Include="Scripts\Originals\2.999\Noesis Maxscript\REEM_NOESIS_CMD.ms">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Noesis\noegl_opengl.dll">
