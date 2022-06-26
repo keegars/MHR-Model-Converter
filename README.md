@@ -12,13 +12,13 @@ It can so far:
 * Convert failed conversions of base rise meshes to fbx with modified version of 2.999 and placed in root folder named with _converted
 * Error log detailing which files failed 
 * Convert .24 texture files to .34
+* Merge mdf2 files with an existing working mdf2 from the demo, with textures and properties being fully merged (Major help from the MDF2 Manager to even make this possible)
 * Rename remaining file extensions to new file extensions
 * Open file location of converted files
 
 TODO:
 * Chain files currently cause .pak files to crash, need to find how to convert over
 * Pfb files not currently supported
-* MDF2 merging/replace/addition to new format needing added (working version is made, but need options added)
 
 Installation:
 1. Place in folder on it's own, not within the root folder of Monster Hunter or within a mod folder
