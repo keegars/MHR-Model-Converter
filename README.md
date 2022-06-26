@@ -17,7 +17,7 @@ It can so far:
 * Open file location of converted files
 
 TODO:
-* Chain files currently cause .pak files to crash, need to find how to convert over
+* Chain files currently cause .pak files to crash, need to find how to convert over (they will currently be removed from the conversion folder)
 * Pfb files not currently supported
 
 Installation:
