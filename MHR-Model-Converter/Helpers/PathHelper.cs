@@ -8,9 +8,9 @@ namespace MHR_Model_Converter.Helpers
     {
         public static Dictionary<string, string> _fileTransform = new Dictionary<string, string>
         {
-            {".chain.35", ".chain.48" },
-            {".mesh.2109108288", ".mesh.2109148288" },
-            {".mdf2.19", ".mdf2.23" }
+            {".35", ".48" },
+            {".2109108288", ".2109148288" },
+            {".19", ".23" }
         };
 
         public static DirectoryInfo CreateFolder(params string[] path)

@@ -48,9 +48,9 @@ namespace MHR_Model_Converter
             //Convert with v2.999
             //any failed conversions with v2.999 export to fbx with v2.999 modified and move to foot of conversion folder
             //any failed conversions with v2.999 export with modified v2.999 to produce "something"
-            var fbxFile = ".mesh.fbx";
-            var mhRiseBaseMesh = ".mesh.2008058288";
-            var re7Mesh = ".mesh.2109108288";
+            var fbxFile = ".fbx";
+            var mhRiseBaseMesh = ".2008058288";
+            var re7Mesh = ".2109108288";
 
             //Convert with v2.999 from base to re7 format
             var baseMeshes = GetFiles(conversionFolder.FullName, $"*{mhRiseBaseMesh}");
