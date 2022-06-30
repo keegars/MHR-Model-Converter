@@ -11,7 +11,6 @@ It can so far:
 * Convert failed conversions of base rise meshes to fbx with version 2.6 and place in root folder for easy access
 * Convert failed conversions of base rise meshes to fbx with modified version of 2.999 and placed in root folder named with _converted
 * Error log detailing which files failed 
-* Convert .24 texture files to .34
 * Merge mdf2 files with an existing working mdf2 from the demo, with textures and properties being fully merged (Major help from the MDF2 Manager to even make this possible)
 * Rename remaining file extensions to new file extensions
 * Open file location of converted files
@@ -33,10 +32,12 @@ If there is an error log when converting a file, you will need to fix the mesh w
 Once the mesh has been fixed, you can open noesis.exe, navigate to the fixed .fbx and attempt to export to RE7 mesh (.2109108288) and if it succeeds, rename extension to .2109148288 and move to the correct armor folder.
 
 
-Contributions:
-Please give credit where it is due, and include my name on any mods that use this converter.
-MDF Manager for the template to convert MDF files over.
-Noesis tool for importing/exporting mesh files.
-Noesis scripts which none of this would've been possible.
-Mangie for providing help on chain and pfb files.
-Capcom for giving me the motivation to not lose our mods!!!
+Contributions:  
+  
+**Please give credit where it is due, and include my name on any mods that use this converter.**  
+
+MDF Manager for the template to convert MDF files over.  
+Noesis tool for importing/exporting mesh files.  
+Noesis scripts which none of this would've been possible.  
+Mangie for providing help on chain and pfb files.  
+Capcom for giving me the motivation to not lose our mods!!!  
