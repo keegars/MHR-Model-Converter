@@ -99,10 +99,12 @@ namespace MHR_Model_Converter.Helpers
 
             var v2_9999_modified = Path.Combine(scriptsDirectory, "Modified");
             var v2_9999 = Path.Combine(scriptsDirectory, "Originals", "2.999");
+            var v2_99993 = Path.Combine(scriptsDirectory, "Originals", "2.9993");
             var v2_6 = Path.Combine(scriptsDirectory, "Originals", "2.6");
 
             var v2_9999_modified_Files = Directory.GetFiles(v2_9999_modified, "*", SearchOption.AllDirectories);
             var v2_9999_Files = Directory.GetFiles(v2_9999, "*", SearchOption.AllDirectories);
+            var v2_99993_Files = Directory.GetFiles(v2_99993, "*", SearchOption.AllDirectories);
             var v2_6_Files = Directory.GetFiles(v2_6, "*", SearchOption.AllDirectories);
 
             var pythonFolder = Path.Combine(_NoesisFolder, "plugins", "python");
@@ -111,17 +113,26 @@ namespace MHR_Model_Converter.Helpers
             {
                 case NoesisVersions.v2_9999_modified:
                     RemoveFiles(v2_9999_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
+                    RemoveFiles(v2_99993_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
                     RemoveFiles(v2_6_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
                     CloneDirectory(v2_9999_modified, pythonFolder);
                     break;
                 case NoesisVersions.v2_9999:
                     RemoveFiles(v2_9999_modified_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
+                    RemoveFiles(v2_99993_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
                     RemoveFiles(v2_6_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
                     CloneDirectory(v2_9999, pythonFolder);
+                    break;
+                case NoesisVersions.v2_99993:
+                    RemoveFiles(v2_9999_modified_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
+                    RemoveFiles(v2_9999_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
+                    RemoveFiles(v2_6_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
+                    CloneDirectory(v2_99993, pythonFolder);
                     break;
                 case NoesisVersions.v2_6:
                     RemoveFiles(v2_9999_modified_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
                     RemoveFiles(v2_9999_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
+                    RemoveFiles(v2_99993_Files.Select(z => Path.GetFileName(z)).ToArray(), pythonFolder, maxscriptFolder);
                     CloneDirectory(v2_6, pythonFolder);
                     break;
             }
@@ -129,6 +140,7 @@ namespace MHR_Model_Converter.Helpers
 
         public enum NoesisVersions
         {
+            v2_99993,
             v2_9999,
             v2_9999_modified,
             v2_6,

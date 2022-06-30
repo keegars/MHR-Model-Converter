@@ -52,9 +52,9 @@ namespace MHR_Model_Converter
             var mhRiseBaseMesh = ".2008058288";
             var re7Mesh = ".2109108288";
 
-            //Convert with v2.999 from base to re7 format
+            //Convert with v2.9993 from base to re7 format
             var baseMeshes = GetFiles(conversionFolder.FullName, $"*{mhRiseBaseMesh}");
-            var failedConversions = ConvertWithNoesis(baseMeshes, mhRiseBaseMesh, re7Mesh, NoesisVersions.v2_9999, false, "-rewrite");
+            var failedConversions = ConvertWithNoesis(baseMeshes, mhRiseBaseMesh, re7Mesh, NoesisVersions.v2_99993, false, "-rewrite");
 
             //Any failed conversions export base to re7 format with v2.999 modified
             ConvertWithNoesis(failedConversions, mhRiseBaseMesh, re7Mesh, NoesisVersions.v2_9999_modified, false, "-rewrite");

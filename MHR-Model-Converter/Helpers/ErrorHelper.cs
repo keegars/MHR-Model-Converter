@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace MHR_Model_Converter.Helpers
 {
@@ -8,7 +9,13 @@ namespace MHR_Model_Converter.Helpers
 
         public static void Log(string error)
         {
-            File.AppendAllText(Path.Combine(ConversionFolder, "errorlog.txt"), error);
+            File.AppendAllText(GetErrorLog(), error);
+            File.AppendAllText(GetErrorLog(), Environment.NewLine);
+        }
+
+        private static string GetErrorLog()
+        {
+            return Path.Combine(ConversionFolder, "errorlog.txt");
         }
     }
 }

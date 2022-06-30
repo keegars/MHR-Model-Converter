@@ -394,10 +394,13 @@ namespace MHR_Model_Converter.Chain
                 var nameSections = (endOffset - _Position) / 8;
 
                 chainGroup.TerminalNodeNameList = new List<ulong>();
-                for (var  j = 0; j < nameSections; j++)
+                if (chainGroup.TerminalNodeNameOffset != 0)
                 {
-                    var terminalNodeNamePart = TakeBytes<ulong>();
-                    chainGroup.TerminalNodeNameList.Add(terminalNodeNamePart);
+                    for (var j = 0; j < nameSections; j++)
+                    {
+                        var terminalNodeNamePart = TakeBytes<ulong>();
+                        chainGroup.TerminalNodeNameList.Add(terminalNodeNamePart);
+                    }
                 }
 
                 chainGroup.ChainNodesData = new List<ChainNodeData>();
