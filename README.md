@@ -32,6 +32,9 @@ Once the mesh has been fixed, you can open noesis.exe, navigate to the fixed .fb
 Chains - 
 There may be a few errors with the chains, as there is only so many file formats I can support at once. If there are any errors that occur, please share the errorlog.txt and the chain file that failed and I can check the issue.
 
+Prefabs - 
+** Physics will not work unless you have an associated prefab file for the armor, I can make the program generate this automaticaly if requested, but Sunbreak is calling me! **
+
 Contributions:  
   
 **Please give credit where it is due, and include my name on any mods that use this converter.**  
