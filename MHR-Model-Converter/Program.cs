@@ -81,10 +81,6 @@ namespace MHR_Model_Converter
             //Remove each base mesh file
             baseMeshes.Select(z => new FileInfo(z)).Where(z => z.Exists).ToList().ForEach(z => File.Delete(z.FullName));
 
-            //Convert Textures with Noesis to .34
-            var textures = GetFiles(conversionFolder.FullName, "*.tex.28");
-            ConvertWithNoesis(textures, ".tex.28", ".tex.34", NoesisVersions.v2_9999_modified);
-
             //-------------------------------------------------
             //MDF2 Conversion
             //Need to add in the detection for hand textures, as some old mods have issues and will need to copy files across...need to check when sunbreak is released that this doesn't happen anymore.

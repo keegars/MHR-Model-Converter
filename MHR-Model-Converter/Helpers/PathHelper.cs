@@ -8,7 +8,6 @@ namespace MHR_Model_Converter.Helpers
         public static Dictionary<string, string> _fileTransform = new Dictionary<string, string>
         {
             {".chain.35", ".chain.48" },
-            {".tex.28", ".tex.34" },
             {".mesh.2109108288", ".mesh.2109148288" },
             {".mdf2.19", ".mdf2.23" }
         };
