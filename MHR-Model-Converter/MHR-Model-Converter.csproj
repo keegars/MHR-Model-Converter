@@ -49,7 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chain\Chain.cs" />
+    <Compile Include="Chain\ChainData.cs" />
+    <Compile Include="Chain\ChainEnums.cs" />
+    <Compile Include="Chain\ChainGroup.cs" />
+    <Compile Include="Chain\ChainNodeData.cs" />
+    <Compile Include="Chain\ChainSetting.cs" />
+    <Compile Include="Chain\Collision.cs" />
+    <Compile Include="Chain\WindSetting.cs" />
+    <Compile Include="Helpers\ByteHelper.cs" />
     <Compile Include="Helpers\CMDHelper.cs" />
+    <Compile Include="Helpers\ChainHelper.cs" />
+    <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\FolderHelper.cs" />
     <Compile Include="Helpers\LibraryHelper.cs" />
     <Compile Include="Helpers\MDFHelper.cs" />

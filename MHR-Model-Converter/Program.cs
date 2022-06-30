@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using MHR_Model_Converter.Helpers;
+using static MHR_Model_Converter.Helper.ChainHelper;
 using static MHR_Model_Converter.Helpers.CMDHelper;
 using static MHR_Model_Converter.Helpers.FolderHelper;
 using static MHR_Model_Converter.Helpers.MDFHelper;
@@ -30,6 +32,8 @@ namespace MHR_Model_Converter
             var baseConversionFolder = CreateFolder(Environment.CurrentDirectory, "Conversions");
             var conversionFolder = baseConversionFolder.CreateSubdirectory($"{DateTime.Now:yyyyMMdd_HHmmss}_{Path.GetFileName(baseFolder.FullName)}");
             CloneDirectory(baseFolder, conversionFolder);
+
+            ErrorHelper.ConversionFolder = conversionFolder.FullName;
 
             //Pick noesis folder
             var noesisFileInfo = PickExecutableFromFolder("Noesis.exe", Environment.CurrentDirectory, "Noesis");
@@ -75,7 +79,7 @@ namespace MHR_Model_Converter
             //Naming convention must be: The naming scheme of meshes must match the Noesis plugin format: LODGroup_X_MainMesh_Y_SubMesh_Z__materialName
             foreach (var failure in failedConversions)
             {
-                File.AppendAllText(Path.Combine(conversionFolder.FullName, "errorlog.txt"), $"Failed to convert file: {failure} {Environment.NewLine} Most likely case will be the naming convention for the meshes and material name not matching, please update the fbx in blender using the following naming scheme: LODGroup_X_MainMesh_Y_SubMesh_Z__materialName . E.g. LODGroup_1_MainMesh_1_SubMesh_1__fskin, LODGroup_1_MainMesh_1_SubMesh_2__fbody etc, incrementing the submesh and adding the material name each time. DO NOTE: there must be two underscores before the material name when naming the mesh. {Environment.NewLine}{Environment.NewLine}");
+                ErrorHelper.Log($"Failed to convert file: {failure} {Environment.NewLine} Most likely case will be the naming convention for the meshes and material name not matching, please update the fbx in blender using the following naming scheme: LODGroup_X_MainMesh_Y_SubMesh_Z__materialName . E.g. LODGroup_1_MainMesh_1_SubMesh_1__fskin, LODGroup_1_MainMesh_1_SubMesh_2__fbody etc, incrementing the submesh and adding the material name each time. DO NOTE: there must be two underscores before the material name when naming the mesh. {Environment.NewLine}{Environment.NewLine}");              
             }
 
             //Remove each base mesh file
@@ -88,13 +92,12 @@ namespace MHR_Model_Converter
             var mdfFiles = GetFiles(conversionFolder.FullName, "*.mdf2.19");
             ConvertMDFFiles(mdfFiles, MDFConversion.MergeAndAddMissingProperties);
 
+            //Convert chain files from .35 to .48, can be reversed, but no need.
+            var chains = GetFiles(conversionFolder.FullName, "*.chain.35");
+            ConvertChainFiles(chains);
+
             //Rename File Extensions for each: tex, mesh, mdf2, chain
             RenameFileExtensions(conversionFolder.FullName);
-
-            //Remove chain files at present as they will cause .paks to crash when not converted properly...
-            //TODO - Remove once chain files have been figured out
-            var chains = GetFiles(conversionFolder.FullName, "*.chain.*");
-            chains.Select(z => new FileInfo(z)).Where(z => z.Exists).ToList().ForEach(z => z.Delete());
 
             //Open Folder Location with file explorer
             OpenExplorerLocation(conversionFolder.FullName);

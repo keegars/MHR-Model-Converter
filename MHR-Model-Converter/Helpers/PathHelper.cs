@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace MHR_Model_Converter.Helpers
 {
@@ -90,6 +91,22 @@ namespace MHR_Model_Converter.Helpers
                             fileInfo.Delete();
                         }
                     }
+                }
+            }
+        }
+
+        public static BinaryReader OpenFile(string filePath)
+        {
+            return new BinaryReader(new FileStream(filePath, FileMode.Open), Encoding.Unicode);
+        }
+
+        public static void SaveFile(string filePath, byte[] bytes)
+        {
+            using (var bw = new BinaryWriter(new FileStream(filePath, FileMode.Create)))
+            {
+                foreach (var value in bytes)
+                {
+                    bw.Write(value);
                 }
             }
         }
