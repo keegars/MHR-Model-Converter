@@ -12,12 +12,9 @@ It can so far:
 * Convert failed conversions of base rise meshes to fbx with modified version of 2.999 and placed in root folder named with _converted
 * Error log detailing which files failed 
 * Merge mdf2 files with an existing working mdf2 from the demo, with textures and properties being fully merged (Major help from the MDF2 Manager to even make this possible)
+* Convert Chain files from .35 to .48
 * Rename remaining file extensions to new file extensions
 * Open file location of converted files
-
-TODO:
-* Chain files currently cause .pak files to crash, need to find how to convert over (they will currently be removed from the conversion folder)
-* Pfb files not currently supported
 
 Installation:
 1. Place in folder on it's own, not within the root folder of Monster Hunter or within a mod folder
@@ -27,10 +24,16 @@ Installation:
 5. When converted folder opens in file explorer, check there is no errorlog.
 
 Notes:
+Meshes - 
 If there is an error log when converting a file, you will need to fix the mesh with blender. Assuming you created the mod, this should be rather straight forward and you can use the original fbx provided or the converted, the only difference is that the converted has the new mesh naming and you only need to fix the material and add the material name to the mesh naming convention. By default, the material has been renamed to 'unknown' to allow noesis to export it.
 
 Once the mesh has been fixed, you can open noesis.exe, navigate to the fixed .fbx and attempt to export to RE7 mesh (.2109108288) and if it succeeds, rename extension to .2109148288 and move to the correct armor folder.
 
+Chains - 
+There may be a few errors with the chains, as there is only so many file formats I can support at once. If there are any errors that occur, please share the errorlog.txt and the chain file that failed and I can check the issue.
+
+Prefabs - 
+** Physics will not work unless you have an associated prefab file for the armor, I can make the program generate this automaticaly if requested, but Sunbreak is calling me! **
 
 Contributions:  
   
