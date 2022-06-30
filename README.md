@@ -31,3 +31,12 @@ Notes:
 If there is an error log when converting a file, you will need to fix the mesh with blender. Assuming you created the mod, this should be rather straight forward and you can use the original fbx provided or the converted, the only difference is that the converted has the new mesh naming and you only need to fix the material and add the material name to the mesh naming convention. By default, the material has been renamed to 'unknown' to allow noesis to export it.
 
 Once the mesh has been fixed, you can open noesis.exe, navigate to the fixed .fbx and attempt to export to RE7 mesh (.2109108288) and if it succeeds, rename extension to .2109148288 and move to the correct armor folder.
+
+
+Contributions:
+Please give credit where it is due, and include my name on any mods that use this converter.
+MDF Manager for the template to convert MDF files over.
+Noesis tool for importing/exporting mesh files.
+Noesis scripts which none of this would've been possible.
+Mangie for providing help on chain and pfb files.
+Capcom for giving me the motivation to not lose our mods!!!
