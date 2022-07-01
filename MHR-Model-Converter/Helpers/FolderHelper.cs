@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace MHR_Model_Converter.Helpers
 {
@@ -10,12 +11,15 @@ namespace MHR_Model_Converter.Helpers
         {
             var folderPath = string.Empty;
 
-            var folderDialog = new FolderBrowserDialog();
-            folderDialog.SelectedPath = path.Length != 0 ? Path.Combine(path) : Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var folderDialog = new CommonOpenFileDialog();
+            folderDialog.IsFolderPicker = true;
+            folderDialog.InitialDirectory =   path.Length != 0 ? Path.Combine(path) : Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-            if (folderDialog.ShowDialog() == DialogResult.OK)
+            var dialogResult = folderDialog.ShowDialog();
+
+            if (dialogResult == CommonFileDialogResult.Ok)
             {
-                folderPath = folderDialog.SelectedPath;
+                folderPath = folderDialog.FileName;
             }
 
             return new DirectoryInfo(folderPath);
@@ -25,10 +29,11 @@ namespace MHR_Model_Converter.Helpers
         {
             var folderPath = string.Empty;
 
-            var folderDialog = new FolderBrowserDialog();
-            folderDialog.SelectedPath = path.Length != 0 ? Path.Combine(path) : Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var folderDialog = new CommonOpenFileDialog();
+            folderDialog.IsFolderPicker = true;
+            folderDialog.InitialDirectory = path.Length != 0 ? Path.Combine(path) : Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-            var fileInfo = new FileInfo(Path.Combine(folderDialog.SelectedPath, executableName));
+            var fileInfo = new FileInfo(Path.Combine(folderDialog.InitialDirectory, executableName));
 
             if (!fileInfo.Exists)
             {
@@ -37,13 +42,13 @@ namespace MHR_Model_Converter.Helpers
 
             while (!fileInfo.Exists)
             {
-                if (folderDialog.ShowDialog() != DialogResult.OK)
+                if (folderDialog.ShowDialog() != CommonFileDialogResult.Ok)
                 {
-                    folderDialog.SelectedPath = string.Empty;
+                    folderDialog.InitialDirectory = string.Empty;
                     break; //Quit out
                 }
 
-                fileInfo = new FileInfo(Path.Combine(folderDialog.SelectedPath, executableName));
+                fileInfo = new FileInfo(Path.Combine(folderDialog.InitialDirectory, executableName));
 
                 if (!fileInfo.Exists)
                 {

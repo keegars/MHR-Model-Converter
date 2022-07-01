@@ -92,7 +92,7 @@ namespace MHR_Model_Converter.Helpers
             return failedConversions;
         }
 
-        private static void CopyVersionFiles(NoesisVersions version)
+        public static void CopyVersionFiles(NoesisVersions version)
         {
             var currentDirectory = Environment.CurrentDirectory;
             var scriptsDirectory = Path.Combine(currentDirectory, "Scripts");

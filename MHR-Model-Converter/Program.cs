@@ -51,25 +51,27 @@ namespace MHR_Model_Converter
             var fbxFile = ".fbx";
             var mhRiseBaseMesh = ".2008058288";
             var re7Mesh = ".2109108288";
+            var sunbreakMesh = ".2109148288";
 
-            //Convert with v2.9993 from base to re7 format
+            //Convert with v2.9993 from base to sunbreak format
             var baseMeshes = GetFiles(conversionFolder.FullName, $"*{mhRiseBaseMesh}");
-            var failedConversions = ConvertWithNoesis(baseMeshes, mhRiseBaseMesh, re7Mesh, NoesisVersions.v2_99993, false, "-rewrite");
+            var failedConversions = ConvertWithNoesis(baseMeshes, mhRiseBaseMesh, sunbreakMesh, NoesisVersions.v2_99993, false, "-rewrite");
 
             //Any failed conversions export base to re7 format with v2.999 modified
             ConvertWithNoesis(failedConversions, mhRiseBaseMesh, re7Mesh, NoesisVersions.v2_9999_modified, false, "-rewrite");
 
-            //Any failed conversions, export to fbx with v2.999 modified (use to be original v2.6, but modified can now export it with 'unknown' as material name), then move fbx to root folder
-            //Convert failed base to fbx and move
-            ConvertWithNoesis(failedConversions, mhRiseBaseMesh, fbxFile, NoesisVersions.v2_6, false, "-rewrite");
-            var fbxFiles = conversionFolder.GetFiles("*.fbx", SearchOption.AllDirectories).ToList();
-            fbxFiles.ForEach(z => File.Move(z.FullName, Path.Combine(conversionFolder.FullName, Path.GetFileName(z.FullName))));
+            //No longer providing the original fbx, as too many issues occuring with users
+            ////Any failed conversions, export to fbx with v2.999 modified (use to be original v2.6, but modified can now export it with 'unknown' as material name), then move fbx to root folder
+            ////Convert failed base to fbx and move
+            //ConvertWithNoesis(failedConversions, mhRiseBaseMesh, fbxFile, NoesisVersions.v2_6, false, "-rewrite");
+            //var fbxFiles = conversionFolder.GetFiles("*.fbx", SearchOption.AllDirectories).ToList();
+            //fbxFiles.ForEach(z => File.Move(z.FullName, Path.Combine(conversionFolder.FullName, Path.GetFileName(z.FullName))));
 
             //Convert failed re7 to fbx and move
             var failedRe7Meshes = conversionFolder.GetFiles($"*{re7Mesh}", SearchOption.AllDirectories).ToList();
             var tmpfailedRe7Meshes = failedRe7Meshes.Where(z => failedConversions.Select(Path.GetFileNameWithoutExtension).Contains(Path.GetFileNameWithoutExtension(z.FullName))).Select(z => z.FullName).ToList();
-            ConvertWithNoesis(tmpfailedRe7Meshes, re7Mesh, fbxFile, NoesisVersions.v2_9999_modified, false, "-rewrite");
-            fbxFiles = conversionFolder.GetFiles("*.fbx", SearchOption.AllDirectories).Where(z => Path.GetDirectoryName(z.FullName) != conversionFolder.FullName).ToList();
+            ConvertWithNoesis(tmpfailedRe7Meshes, re7Mesh, fbxFile, NoesisVersions.v2_9999_modified, true, "-rewrite");
+            var fbxFiles = conversionFolder.GetFiles("*.fbx", SearchOption.AllDirectories).Where(z => Path.GetDirectoryName(z.FullName) != conversionFolder.FullName).ToList();
             fbxFiles.ForEach(z => File.Move(z.FullName, Path.Combine(conversionFolder.FullName, $"{Path.GetFileNameWithoutExtension(z.FullName)}_converted{fbxFile}")));
 
             //Move failed conversion meshes to conversion folder root
@@ -98,6 +100,9 @@ namespace MHR_Model_Converter
 
             //Rename File Extensions for each: tex, mesh, mdf2, chain
             RenameFileExtensions(conversionFolder.FullName);
+
+            //Make sure Noesis is using the latest version
+            NoesisHelper.CopyVersionFiles(NoesisVersions.v2_99993);
 
             //Open Folder Location with file explorer
             OpenExplorerLocation(conversionFolder.FullName);

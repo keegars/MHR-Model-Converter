@@ -346,6 +346,8 @@ namespace MHR_Model_Converter.Chain
         {
             ChainGroups = new List<ChainGroup>();
 
+            _Position = Convert.ToInt32(ChainData.GroupTablePointer);
+
             var chainGroupCount = ChainData.GroupCount;
             for (var i = 0; i < chainGroupCount; i++)
             {
@@ -409,44 +411,51 @@ namespace MHR_Model_Converter.Chain
                 {
                     var startPos = _Position;
 
-                    var chainNodeData = new ChainNodeData();
-
-                    //Populate
-                    chainNodeData.AngleLimitDirectionX = TakeBytes<float>();
-                    chainNodeData.AngleLimitDirectionY = TakeBytes<float>();
-                    chainNodeData.AngleLimitDirectionZ = TakeBytes<float>();
-                    chainNodeData.AngleLimitDirectionW = TakeBytes<float>();
-                    chainNodeData.AngleLimitRad = TakeBytes<float>();
-                    chainNodeData.AngleLimitDistance = TakeBytes<float>();
-                    chainNodeData.AngleLimitRestitution = TakeBytes<float>();
-                    chainNodeData.AngleLimitRestitutionStopSpeed = TakeBytes<float>();
-                    chainNodeData.CollisionRadius = TakeBytes<float>();
-                    chainNodeData.CollisionFilterFlags = TakeBytes<uint>();
-                    chainNodeData.CapsuleStretchRate0 = TakeBytes<float>();
-                    chainNodeData.CapsuleStretchRate1 = TakeBytes<float>();
-                    chainNodeData.AttributeFlag = TakeBytes<uint>();
-                    chainNodeData.ConstraintJntNameHash = TakeBytes<uint>();
-                    chainNodeData.WindCoEf = TakeBytes<float>();
-                    chainNodeData.AngleMode = TakeBytes<int>();
-                    chainNodeData.CollisionShape = TakeBytes<int>();
-                    chainNodeData.AttachType = TakeBytes<int>();
-                    chainNodeData.RotationType = TakeBytes<int>();
-                    chainNodeData.JiggleData = TakeBytes<ulong>();
-                    TakeBytes(8);
-
-                    if (_Position - ChainNodeSize != startPos)
+                    if (_Position != 0)
                     {
-                        throw new Exception($"Position {_Position} in byte array is not the same as the chain data size {ChainNodeSize}.");
+                        var chainNodeData = new ChainNodeData();
+
+                        //Populate
+                        chainNodeData.AngleLimitDirectionX = TakeBytes<float>();
+                        chainNodeData.AngleLimitDirectionY = TakeBytes<float>();
+                        chainNodeData.AngleLimitDirectionZ = TakeBytes<float>();
+                        chainNodeData.AngleLimitDirectionW = TakeBytes<float>();
+                        chainNodeData.AngleLimitRad = TakeBytes<float>();
+                        chainNodeData.AngleLimitDistance = TakeBytes<float>();
+                        chainNodeData.AngleLimitRestitution = TakeBytes<float>();
+                        chainNodeData.AngleLimitRestitutionStopSpeed = TakeBytes<float>();
+                        chainNodeData.CollisionRadius = TakeBytes<float>();
+                        chainNodeData.CollisionFilterFlags = TakeBytes<uint>();
+                        chainNodeData.CapsuleStretchRate0 = TakeBytes<float>();
+                        chainNodeData.CapsuleStretchRate1 = TakeBytes<float>();
+                        chainNodeData.AttributeFlag = TakeBytes<uint>();
+                        chainNodeData.ConstraintJntNameHash = TakeBytes<uint>();
+                        chainNodeData.WindCoEf = TakeBytes<float>();
+                        chainNodeData.AngleMode = TakeBytes<int>();
+                        chainNodeData.CollisionShape = TakeBytes<int>();
+                        chainNodeData.AttachType = TakeBytes<int>();
+                        chainNodeData.RotationType = TakeBytes<int>();
+                        chainNodeData.JiggleData = TakeBytes<ulong>();
+                        TakeBytes(8);
+
+                        if (_Position - ChainNodeSize != startPos)
+                        {
+                            throw new Exception($"Position {_Position} in byte array is not the same as the chain data size {ChainNodeSize}.");
+                        }
+
+                        //Add to chain note data
+                        chainGroup.ChainNodesData.Add(chainNodeData);
                     }
 
-                    //Add to chain note data
-                    chainGroup.ChainNodesData.Add(chainNodeData);
+                    
                 }
 
                 _Position = endPosition;
 
                 //Check that the data sizes match
-                var size = ChainDataSize + (ChainSettingSize * ChainData.SettingCount) + (CollisionSize * ChainData.ModelCollisionCount) + (ChainGroupSize * (i + 1));
+                //var size = ChainDataSize + (ChainSettingSize * ChainData.SettingCount) + (CollisionSize * ChainData.ModelCollisionCount) + (ChainGroupSize * (i + 1));
+
+                var size = Convert.ToInt32(ChainData.GroupTablePointer) + (ChainGroupSize * (i + 1));
 
                 if (_Position != size)
                 {
