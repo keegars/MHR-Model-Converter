@@ -8,7 +8,6 @@ It can so far:
 * Create a new folder to hold converted files to keep the original and provide converted separately 
 * Attempt conversion with latest noesis version (2.999) of base rise meshes to latest re7 format
 * Convert failed conversions with a modified version of 2.999, of base rise meshes to latest re7 format
-* Convert failed conversions of base rise meshes to fbx with version 2.6 and place in root folder for easy access
 * Convert failed conversions of base rise meshes to fbx with modified version of 2.999 and placed in root folder named with _converted
 * Error log detailing which files failed 
 * Merge mdf2 files with an existing working mdf2 from the demo, with textures and properties being fully merged (Major help from the MDF2 Manager to even make this possible)
@@ -25,9 +24,8 @@ Installation:
 
 Notes:
 Meshes - 
-If there is an error log when converting a file, you will need to fix the mesh with blender. Assuming you created the mod, this should be rather straight forward and you can use the original fbx provided or the converted, the only difference is that the converted has the new mesh naming and you only need to fix the material and add the material name to the mesh naming convention. By default, the material has been renamed to 'unknown' to allow noesis to export it.
+** If there is an error log, there is now a PDF provided in the zip file to help facilitate fixing the mesh! Please read all the instructions and follow it through, it is simple and rather quick once you are use to it. Sadly, it cannot be further automated with the current scripts for noesis. **
 
-Once the mesh has been fixed, you can open noesis.exe, navigate to the fixed .fbx and attempt to export to RE7 mesh (.2109108288) and if it succeeds, rename extension to .2109148288 and move to the correct armor folder.
 
 Chains - 
 There may be a few errors with the chains, as there is only so many file formats I can support at once. If there are any errors that occur, please share the errorlog.txt and the chain file that failed and I can check the issue.
