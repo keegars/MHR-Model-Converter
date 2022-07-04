@@ -22,7 +22,7 @@ It can so far:
 * Open file location of converted files
 
 Installation:
-1. Go to https://github.com/keegars/MHR-Model-Converter/releases and find the latest release, click assets and download the MHR-Model-Converter-8version*.zip
+1. Go to https://github.com/keegars/MHR-Model-Converter/releases and find the latest release, click assets and download the MHR-Model-Converter-*version*.zip
 2. Unzip and place in folder on it's own, not within the root folder of Monster Hunter or within a mod folder
 3. Run the provided executable
 4. Pick the folder to convert
