@@ -2,6 +2,12 @@
 
 This is a program to convert base MH Rise armor mods over to the Sunbreak Demo, and eventually the full game on release.
 
+Supported :
+* Chain from .35 to .48
+* Meshes base to sunbreak
+* Texture renaming
+* MDF2 (Player support only at present, weapons and NPC's will come shortly)
+
 It can so far:
 * Select a folder where the mod is being held
 * Detect the noesis folder provided
@@ -16,11 +22,12 @@ It can so far:
 * Open file location of converted files
 
 Installation:
-1. Place in folder on it's own, not within the root folder of Monster Hunter or within a mod folder
-2. Run the provided executable
-3. Pick the folder to convert
-4. If any errors occur, press ok to the dialog box as it is a noesis warning
-5. When converted folder opens in file explorer, check there is no errorlog.
+1. Go to https://github.com/keegars/MHR-Model-Converter/releases and find the latest release, click assets and download the MHR-Model-Converter-8version*.zip
+2. Unzip and place in folder on it's own, not within the root folder of Monster Hunter or within a mod folder
+3. Run the provided executable
+4. Pick the folder to convert
+5. If any errors occur, press ok to the dialog box as it is a noesis warning
+6. When converted folder opens in file explorer, check there is no errorlog.
 
 Notes:
 Meshes - 
@@ -31,7 +38,7 @@ Chains -
 There may be a few errors with the chains, as there is only so many file formats I can support at once. If there are any errors that occur, please share the errorlog.txt and the chain file that failed and I can check the issue.
 
 Prefabs - 
-** Physics will not work unless you have an associated prefab file for the armor, I can make the program generate this automaticaly if requested, but Sunbreak is calling me! **
+Dytsers Physics Enabler will be updated shortly to support jiggles!
 
 Contributions:  
   
@@ -40,5 +47,6 @@ Contributions:
 MDF Manager for the template to convert MDF files over.  
 Noesis tool for importing/exporting mesh files.  
 Noesis scripts which none of this would've been possible.  
+The Particular Pommels for their support and help with testing.
 Mangie for providing help on chain and pfb files.  
 Capcom for giving me the motivation to not lose our mods!!!  
