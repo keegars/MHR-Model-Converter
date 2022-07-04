@@ -54,16 +54,17 @@ namespace MHR_Model_Converter.Chain
             bytesList.AddRange(PairJointNameHash.ToBytes());
             bytesList.AddRange(Radius.ToBytes());
             bytesList.AddRange(Lerp.ToBytes());
+            bytesList.AddRange(ByteHelper.EmptyBytes(4));
             bytesList.AddRange(Shape.ToBytes());
             bytesList.AddRange(Div.ToBytes());
             bytesList.AddRange(SubDataCount.ToBytes());
             bytesList.AddRange(ByteHelper.EmptyBytes(1));
             bytesList.AddRange(CollisionFilterFlags.ToBytes());
 
-            if (version == ChainVersion.v48)
-            {
-                bytesList.AddRange(ByteHelper.EmptyBytes(4));
-            }
+            //if (version == ChainVersion.v48)
+            //{
+            //    bytesList.AddRange(ByteHelper.EmptyBytes(4));
+            //}
 
             if (size != bytesList.Count)
             {

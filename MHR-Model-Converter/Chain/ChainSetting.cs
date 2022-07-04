@@ -104,7 +104,6 @@ namespace MHR_Model_Converter.Chain
             {
                 bytesList.AddRange(Unknown0.ToBytes());
                 bytesList.AddRange(Unknown1.ToBytes());
-                bytesList.AddRange(ByteHelper.EmptyBytes(8));
             }
 
             if (size != bytesList.Count)

@@ -734,6 +734,9 @@
     <Content Include="Scripts\Originals\2.999\Noesis Maxscript\REEM_NOESIS_CMD.ms">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Fixing Failed Mesh Exports.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Scripts\Originals\2.9993\fmt_RE_MESH.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

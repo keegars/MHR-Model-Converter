@@ -53,7 +53,8 @@ namespace MHR_Model_Converter.Chain
             bytesList.AddRange(AttachType.ToBytes());
             bytesList.AddRange(RotationType.ToBytes());
             bytesList.AddRange(JiggleData.ToBytes());
-            bytesList.AddRange(ByteHelper.EmptyBytes(8));
+            bytesList.AddRange(new List<byte> { 0, 0, 128, 63 }); //Add 00 00 80 3F
+            bytesList.AddRange(ByteHelper.EmptyBytes(4));
 
             if (size != bytesList.Count)
             {

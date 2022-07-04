@@ -148,21 +148,21 @@ namespace MHR_Model_Converter.Chain
         {
             if (version == ChainVersion.v35)
             {
-                ChainDataSize = 112;        //70
-                ChainSettingSize = 160;     //A0
-                CollisionSize = 72;         //48
-                ChainGroupSize = 80;        //50
-                ChainNodeSize = 80;        //50
-                WindSettingSize = 184;      //B8
+                ChainDataSize = 112;        
+                ChainSettingSize = 160;     
+                CollisionSize = 72;         
+                ChainGroupSize = 80;        
+                ChainNodeSize = 80;        
+                WindSettingSize = 184;      
             }
             else if (version == ChainVersion.v48)
             {
-                ChainDataSize = 112;        //70
-                ChainSettingSize = 176;     //B0
-                CollisionSize = 80;         //50
-                ChainGroupSize = 112;       //70
-                ChainNodeSize = 80;         //70
-                WindSettingSize = 184;      //B8
+                ChainDataSize = 112;        
+                ChainSettingSize = 168;     
+                CollisionSize = 80;         
+                ChainGroupSize = 112;       
+                ChainNodeSize = 80;         
+                WindSettingSize = 184;      
             }
             else
             {
@@ -290,6 +290,8 @@ namespace MHR_Model_Converter.Chain
         {
             Collisions = new List<Collision>();
 
+            _Position = Convert.ToInt32(ChainData.ModelCollisionTable);
+
             var collisionCount = ChainData.ModelCollisionCount;
             for (var i = 0; i < collisionCount; i++)
             {
@@ -324,13 +326,16 @@ namespace MHR_Model_Converter.Chain
                 TakeBytes(1);
                 collision.CollisionFilterFlags = TakeBytes<uint>();
 
+                var tmp = collision.CollisionFilterFlags.ToBytes();
+
                 if (_Version == ChainVersion.v48)
                 {
                     TakeBytes(4);
                 }
 
                 //Check that the data sizes match
-                var size = ChainDataSize + (ChainSettingSize * ChainData.SettingCount) + (CollisionSize * (i + 1));
+                //var size = ChainDataSize + (ChainSettingSize * ChainData.SettingCount) + (CollisionSize * (i + 1));
+                var size = Convert.ToInt32(ChainData.ModelCollisionTable) + (CollisionSize * (i + 1));
 
                 if (_Position != size)
                 {
