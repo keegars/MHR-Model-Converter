@@ -47,6 +47,6 @@ Contributions:
 MDF Manager for the template to convert MDF files over.  
 Noesis tool for importing/exporting mesh files.  
 Noesis scripts which none of this would've been possible.  
-The Particular Pommels for their support and help with testing.
-Mangie for providing help on chain and pfb files.  
+The Particulate Pommels for their support and help with testing, without which this wouldn't of been done!
+Mangie for providing their support and help on chain/pfb files, must appreciated!
 Capcom for giving me the motivation to not lose our mods!!!  
